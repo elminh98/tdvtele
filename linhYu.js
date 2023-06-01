@@ -13,7 +13,7 @@ app.post('/webhook', (req, res) => {
     console.log(req.body);
     if (req.body.symbol) {
         let user = req.body.id
-    bot.telegram.sendMessage(user,`Cảnh báo! Giá ${req.body.symbol} cắt qua ${req.body.price}`);
+    bot.telegram.sendMessage(user,`Giá ${req.body.symbol} vừa cắt qua ${req.body.price}`);
     res.send('receive');}
 })
 app.listen(port, () => {
