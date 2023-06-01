@@ -12,7 +12,8 @@ app.get('/', (req, res) => {
 app.post('/webhook', (req, res) => {
     console.log(req.body);
     if (req.body.symbol) {
-    bot.telegram.sendMessage(-1001789955214,`${req.body.symbol} crossing ${req.body.price}\r\n ${req.body.link}`);
+        let user = req.body.id
+    bot.telegram.sendMessage(849997222,`${req.body.symbol} cross ${req.body.price}`);
     res.send('receive');}
 })
 app.listen(port, () => {
@@ -25,8 +26,11 @@ const { Telegraf, Context } = require('telegraf');
 const { message } = require('telegraf/filters');
 var fs = require('fs');
 const bot = new Telegraf('5888824865:AAEo3fnhQikuU7kkBzdozKDnBnL0lfnZ6r4');
+var arr = []
 bot.on("message", ctx => {
-    console.log(ctx.update)
+    if (arr.includes(ctx.update.message.chat.id)) {console.log("đã tồn tại")} else {arr.push(ctx.update.message.chat.id)}
+    console.log(arr)
+    bot.telegram.sendMessage(ctx.update.message.chat.id,`Telegram của bạn đã được liên kết, xin vui lòng cài thông báo trên TradingView bằng format sau \r\n {id: ${ctx.update.message.chat.id}, symbol: {{ticker}}, price: {{close}}}`)
 })
 
 bot.launch();
