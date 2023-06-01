@@ -13,7 +13,7 @@ app.post('/webhook', (req, res) => {
     console.log(req.body);
     if (req.body.symbol) {
         let user = req.body.id
-    bot.telegram.sendMessage(849997222,`${req.body.symbol} cross ${req.body.price}`);
+    bot.telegram.sendMessage(user,`${req.body.symbol} cross ${req.body.price}`);
     res.send('receive');}
 })
 app.listen(port, () => {
@@ -30,7 +30,7 @@ var arr = []
 bot.on("message", ctx => {
     if (arr.includes(ctx.update.message.chat.id)) {console.log("đã tồn tại")} else {arr.push(ctx.update.message.chat.id)}
     console.log(arr)
-    bot.telegram.sendMessage(ctx.update.message.chat.id,`Hướng dẫn cài đặt thông báo trên TDV \r\n Dán link này vào mục webhook URL http://103.231.248.29:80/webhook, \r\n Ô message bên dưới nhập: {"id": ${ctx.update.message.chat.id}, "symbol": "{{ticker}}", "price": "{{close}}}"`)
+    bot.telegram.sendMessage(ctx.update.message.chat.id,`Hướng dẫn cài đặt thông báo trên TDV \r\n Dán link này vào mục webhook URL http://103.231.248.29:80/webhook, \r\n Ô message bên dưới nhập: {"id": ${ctx.update.message.chat.id}, "symbol": "{{ticker}}", "price": "{{close}}}`)
 })
 
 bot.launch();
