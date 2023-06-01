@@ -30,7 +30,7 @@ var arr = []
 bot.on("message", async ctx => {
     if (arr.includes(ctx.update.message.chat.id)) {console.log("đã tồn tại")} else {arr.push(ctx.update.message.chat.id)}
     console.log(arr)
-    bot.telegram.sendMessage(ctx.update.message.chat.id,`Hướng dẫn cài đặt thông báo trên TDV \r\n Dán link này vào mục webhook URL http://103.231.248.29:80/webhook, \r\n Ô message bên dưới nhập: \r\n {"id": ${ctx.update.message.chat.id}, "symbol": "{{ticker}}", "price": "{{close}}"}`)
+    bot.telegram.sendMessage(ctx.update.message.chat.id,`URL: http://103.231.248.29:80/webhook, \r\n Message: {"id": ${ctx.update.message.chat.id}, "symbol": "{{ticker}}", "price": "{{close}}"}`)
 })
 
 bot.launch();
